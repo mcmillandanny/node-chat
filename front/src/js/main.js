@@ -25,13 +25,9 @@ let showMessagesOnDOM = function(messages) {
 	messagesUL.innerHTML = '';
 
 
-
-	let deleteBtn = document.createElement('button');
-
 	messages.forEach( function(message) {	
 		let newMessage = document.createElement('li');
 		newMessage.innerHTML = `${message.username} sent: ${message.text} @ ${message.timestamp}`
-		deleteBtn.appendChild( messagesUL );
 		messagesUL.appendChild( newMessage )
 	})
 	

@@ -23,12 +23,9 @@ var showMessagesOnDOM = function showMessagesOnDOM(messages) {
 	var messagesUL = document.querySelector('ul.messages');
 	messagesUL.innerHTML = '';
 
-	var deleteBtn = document.createElement('button');
-
 	messages.forEach(function (message) {
 		var newMessage = document.createElement('li');
 		newMessage.innerHTML = message.username + ' sent: ' + message.text + ' @ ' + message.timestamp;
-		deleteBtn.appendChild(messagesUL);
 		messagesUL.appendChild(newMessage);
 	});
 };

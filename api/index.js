@@ -23,6 +23,12 @@ app.get('/', function(req, res) {
 
 });
 
+
+	// app.delete('/message/:index', function(req, res) {
+	// 	console.log("delete msg index:" + req.params.index)
+
+	// });
+
 app.post('/message', function(req, res) {
 	console.log(req.body.text)
 
