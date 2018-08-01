@@ -21,23 +21,26 @@ var showMessagesOnDOM = function showMessagesOnDOM(messages) {
 	console.log('gonna show messages', messages);
 
 	var messagesUL = document.querySelector('ul.messages');
-
-	messagesUL.innerHTMl = '';
+	messagesUL.innerHTML = '';
 
 	messages.forEach(function (message) {
 		var newMessage = document.createElement('li');
-		newMessage.innerText = message.text;
+		newMessage.innerHTML = message.username + ' sent: ' + message.text + ' @ ' + message.timestamp;
 		messagesUL.appendChild(newMessage);
 	});
 };
 
 var sendMessage = function sendMessage() {
 	var field = document.querySelector('input[name="new-message"]');
+	var userName = document.querySelector('input[name="user-name"]');
+	console.log(userName);
 	if (field.value) {
-		console.log("send to server", field.value);
+		console.log("send to server", userName.value);
 
 		axios.post("http://localhost:1337/message", {
-			text: field.value
+			text: field.value,
+			timestamp: moment(new Date().getTime()).format('h:mm a'),
+			username: userName.value
 		}).then(function (response) {
 			console.log("Wooooorrkiiing");
 			field.value = "";

@@ -20,6 +20,7 @@ console.log('running index.js'.blue);
 
 app.get('/', function(req, res) {
 	res.send('Hello World!')
+
 });
 
 app.post('/message', function(req, res) {
@@ -27,9 +28,10 @@ app.post('/message', function(req, res) {
 
 	messages.push({
 		text: req.body.text,
-		username: '',
-		timestamp: new Date().getTime()
+		username: req.body.username,
+		timestamp: req.body.timestamp
 	})
+	
 	res.send(messages)
 });
 

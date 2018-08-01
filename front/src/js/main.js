@@ -22,29 +22,32 @@ let showMessagesOnDOM = function(messages) {
 	console.log('gonna show messages' , messages)
 
 	let messagesUL = document.querySelector('ul.messages');
+	messagesUL.innerHTML = '';
 
-	messagesUL.innerHTMl = '';
 
 
 	messages.forEach( function(message) {
 		let newMessage = document.createElement('li');
-		newMessage.innerText = message.text
+		newMessage.innerHTML = `${message.username} sent: ${message.text} @ ${message.timestamp}`
 		messagesUL.appendChild( newMessage )
 	})
 	
 
-}
-
+};
 
 
 let sendMessage = function() {
 	let field = document.querySelector('input[name="new-message"]');
+	let userName = document.querySelector('input[name="user-name"]')
+	console.log(userName)
 	if (field.value) {
-		console.log("send to server", field.value);
+		console.log("send to server", userName.value);
 
 		axios
 			.post("http://localhost:1337/message", {
-				text: field.value
+				text: field.value,
+				timestamp: moment(new Date().getTime()).format('h:mm a'),
+				username: userName.value,
 			})
 			.then(function(response) {
 				console.log("Wooooorrkiiing")
@@ -55,9 +58,8 @@ let sendMessage = function() {
 			.catch(function(error) {
 				console.log("broookkkeen", error)
 			})
+		}
 	}
-}
-
 
 
 document.querySelector('button.send').addEventListener('click', sendMessage)
