@@ -26,9 +26,12 @@ let showMessagesOnDOM = function(messages) {
 
 
 
-	messages.forEach( function(message) {
+	let deleteBtn = document.createElement('button');
+
+	messages.forEach( function(message) {	
 		let newMessage = document.createElement('li');
 		newMessage.innerHTML = `${message.username} sent: ${message.text} @ ${message.timestamp}`
+		deleteBtn.appendChild( messagesUL );
 		messagesUL.appendChild( newMessage )
 	})
 	
@@ -60,6 +63,12 @@ let sendMessage = function() {
 			})
 		}
 	}
+
+
+// let loadSite = function() {
+// 	axios.get('http://localhost:1337/message')
+// 	console.log("page loaded")
+// }
 
 
 document.querySelector('button.send').addEventListener('click', sendMessage)

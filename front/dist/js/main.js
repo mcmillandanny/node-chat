@@ -23,9 +23,12 @@ var showMessagesOnDOM = function showMessagesOnDOM(messages) {
 	var messagesUL = document.querySelector('ul.messages');
 	messagesUL.innerHTML = '';
 
+	var deleteBtn = document.createElement('button');
+
 	messages.forEach(function (message) {
 		var newMessage = document.createElement('li');
 		newMessage.innerHTML = message.username + ' sent: ' + message.text + ' @ ' + message.timestamp;
+		deleteBtn.appendChild(messagesUL);
 		messagesUL.appendChild(newMessage);
 	});
 };
@@ -51,6 +54,12 @@ var sendMessage = function sendMessage() {
 		});
 	}
 };
+
+// let loadSite = function() {
+// 	axios.get('http://localhost:1337/message')
+// 	console.log("page loaded")
+// }
+
 
 document.querySelector('button.send').addEventListener('click', sendMessage);
 //# sourceMappingURL=main.js.map
